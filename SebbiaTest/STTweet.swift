@@ -17,10 +17,13 @@ class STTweet: NSObject, Mappable {
     var userFriendsCount: Int!
     var userImageURL: NSURL!
     
+    
     required init?(_ map: Map) {}
     
     func mapping(map: Map) {
-        date <- (map["created_at"], DateTransform())
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "eee MMM dd HH:mm:ss ZZZZ yyyy"
+        date <- (map["created_at"], DateFormatterTransform(dateFormatter: dateFormatter))
         text <- map["text"]
         
         userName <- map["user.name"]
