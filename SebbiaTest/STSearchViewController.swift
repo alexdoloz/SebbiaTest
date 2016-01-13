@@ -13,6 +13,7 @@ class STSearchViewController: UIViewController {
         super.viewDidLoad()
         STTwitterManager.requestTweetsWithHashtag("qwerty") { tweets, error in
             print("tweets : \(tweets), error : \(error)")
+            
         }
     }
 }

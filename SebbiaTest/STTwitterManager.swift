@@ -8,8 +8,11 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
+import ObjectMapper
 
-class STTwitterManager: NSObject {
+
+class STTwitterManager {
     static let token = "Bearer AAAAAAAAAAAAAAAAAAAAADiJRQAAAAAAt%2Brjl%2Bqmz0rcy%2BBbuXBBsrUHGEg%3Dq0EK2aWqQMb15gCZNwZo9yqae0hpe2FDsS92WAu0g"
     
     static let searchURL = "https://api.twitter.com/1.1/search/tweets.json"
@@ -29,11 +32,15 @@ class STTwitterManager: NSObject {
         }
         
         Alamofire.request(searchRequest).responseJSON { response in
-            print(NSString(data: response.data!, encoding: NSUTF8StringEncoding))
-            if let JSON = (response.result.value as? NSDictionary) {
-                print("---")
-                
+            let json = JSON(response.result.value!)
+            let jsonTweetsArray = json["statuses"]
+            if let tweets: [STTweet] = Mapper<STTweet>().mapArray(jsonTweetsArray.rawValue) {
+                completion(tweets, nil)
+            } else {
+                let error = NSError(domain: "JSON Error", code: 999, userInfo: nil)
+                completion(nil, error)
             }
-        }.responseString { responseString in print(responseString) }
+            
+        }
     }
 }
