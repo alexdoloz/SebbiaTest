@@ -42,6 +42,10 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
 // MARK: UITableViewDelegate
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let tweet = tweets[indexPath.row]
+        performSegueWithIdentifier("ShowAuthorInfo", sender: tweet)
+    }
     
 // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,5 +66,10 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
         updateSearchButton()
         tweetsTable.rowHeight = UITableViewAutomaticDimension
         tweetsTable.estimatedRowHeight = 120.0
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let profileVC = segue.destinationViewController as! STProfileViewController
+        profileVC.tweet = sender as! STTweet
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UIColor_Hex_Swift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        setupAppearance()
         return true
     }
 
@@ -41,6 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func setupAppearance() {
+//        #03A9F4
+        UINavigationBar.appearance().barTintColor = UIColor(hex6: 0x03A9F4)
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+    }
 
 }
 

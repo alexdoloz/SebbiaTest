@@ -5,3 +5,5 @@ use_frameworks!
 pod 'Alamofire', '~> 3.0'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 pod 'ObjectMapper', '~> 1.1'
+pod 'HanekeSwift'
+pod 'UIColor_Hex_Swift', '~> 1.8'
