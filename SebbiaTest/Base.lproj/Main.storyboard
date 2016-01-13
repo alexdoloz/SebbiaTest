@@ -9,7 +9,7 @@
         <!--Твиты-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SebbiaTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="STSearchViewController" customModule="SebbiaTest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -69,7 +69,7 @@
         <!--Профиль-->
         <scene sceneID="1zM-0h-BZp">
             <objects>
-                <viewController id="d0T-5A-VJ6" sceneMemberID="viewController">
+                <viewController id="d0T-5A-VJ6" customClass="STProfileViewController" customModule="SebbiaTest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="myu-vs-vAD"/>
                         <viewControllerLayoutGuide type="bottom" id="3Gx-PZ-TKF"/>
