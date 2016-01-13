@@ -49,10 +49,10 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell_id", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell_id", forIndexPath: indexPath) as! STTweetCell
         let tweet = tweets[indexPath.row]
-        cell.textLabel!.text = tweet.date.description
-        cell.detailTextLabel!.text = tweet.text
+        cell.dateLabel.text = tweet.date.description
+        cell.tweetTextLabel.text = tweet.text
         return cell
     }
     
@@ -60,5 +60,7 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         updateSearchButton()
+        tweetsTable.rowHeight = UITableViewAutomaticDimension
+        tweetsTable.estimatedRowHeight = 120.0
     }
 }
