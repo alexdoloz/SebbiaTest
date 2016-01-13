@@ -8,12 +8,16 @@
 
 import UIKit
 
-class STSearchViewController: UIViewController {
+class STSearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    var tweets: [STTweet] = []
+    
 // MARK: Outlets
     
     @IBOutlet weak var hashtagField: UITextField!
 
     @IBOutlet weak var searchButton: UIButton!
+    
+    @IBOutlet weak var tweetsTable: UITableView!
     
 // MARK: Actions
     @IBAction func searchButtonPressed(sender: AnyObject) {
@@ -32,11 +36,27 @@ class STSearchViewController: UIViewController {
     
     func searchHashtag(hashtag: String) {
         STTwitterManager.requestTweetsWithHashtag(hashtag) { tweets, error in
-            print("tweets : \(tweets), error : \(error)")
-            
+            self.tweets = tweets
+            self.tweetsTable.reloadData()
         }
     }
     
+// MARK: UITableViewDelegate
+    
+// MARK: UITableViewDataSource
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tweets.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell_id", forIndexPath: indexPath)
+        let tweet = tweets[indexPath.row]
+        cell.textLabel!.text = tweet.date.description
+        cell.detailTextLabel!.text = tweet.text
+        return cell
+    }
+    
+// MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         updateSearchButton()
