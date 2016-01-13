@@ -26,6 +26,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="hashtagChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="9Fz-a2-5EZ"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qE-dn-4lQ">
                                 <rect key="frame" x="20" y="87" width="11" height="21"/>
@@ -36,6 +39,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CoO-ry-MI9">
                                 <rect key="frame" x="349" y="83" width="45" height="30"/>
                                 <state key="normal" title="Найти"/>
+                                <connections>
+                                    <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JGr-XH-Hqb"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sOQ-x4-cJM">
                                 <rect key="frame" x="0.0" y="125" width="414" height="611"/>
@@ -59,6 +65,8 @@
                     <navigationItem key="navigationItem" title="Твиты" id="mhW-L3-utU"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="hashtagField" destination="jgd-fn-8q8" id="37s-gf-t6S"/>
+                        <outlet property="searchButton" destination="CoO-ry-MI9" id="C3F-6e-Frp"/>
                         <segue destination="d0T-5A-VJ6" kind="push" identifier="ShowAuthorInfo" id="sAj-Wz-Meh"/>
                     </connections>
                 </viewController>

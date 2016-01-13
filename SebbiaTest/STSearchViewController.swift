@@ -9,11 +9,36 @@
 import UIKit
 
 class STSearchViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        STTwitterManager.requestTweetsWithHashtag("qwerty") { tweets, error in
+// MARK: Outlets
+    
+    @IBOutlet weak var hashtagField: UITextField!
+
+    @IBOutlet weak var searchButton: UIButton!
+    
+// MARK: Actions
+    @IBAction func searchButtonPressed(sender: AnyObject) {
+        searchHashtag(hashtagField.text!)
+    }
+    
+    @IBAction func hashtagChanged(sender: AnyObject) {
+        print("\(hashtagField.text!)")
+        updateSearchButton()
+    }
+    
+// MARK: Helpers
+    func updateSearchButton() {
+        searchButton.enabled = (hashtagField.text! as NSString).length != 0
+    }
+    
+    func searchHashtag(hashtag: String) {
+        STTwitterManager.requestTweetsWithHashtag(hashtag) { tweets, error in
             print("tweets : \(tweets), error : \(error)")
             
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateSearchButton()
     }
 }

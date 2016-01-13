@@ -17,7 +17,7 @@ class STTwitterManager {
     
     static let searchURL = "https://api.twitter.com/1.1/search/tweets.json"
     
-    class func requestTweetsWithHashtag(hashtag: String, completion: ([STTweet]?, NSError?) -> Void) {
+    class func requestTweetsWithHashtag(hashtag: String, completion: ([STTweet]!, NSError?) -> Void) {
         let url = NSURL(string: STTwitterManager.searchURL)!
         var searchRequest = NSMutableURLRequest(URL: url)
         searchRequest.addValue(STTwitterManager.token, forHTTPHeaderField: "Authorization")
