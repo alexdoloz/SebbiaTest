@@ -7,11 +7,33 @@
 //
 
 import UIKit
+import Alamofire
 
 class STTwitterManager: NSObject {
     static let token = "Bearer AAAAAAAAAAAAAAAAAAAAADiJRQAAAAAAt%2Brjl%2Bqmz0rcy%2BBbuXBBsrUHGEg%3Dq0EK2aWqQMb15gCZNwZo9yqae0hpe2FDsS92WAu0g"
     
+    static let searchURL = "https://api.twitter.com/1.1/search/tweets.json"
+    
     class func requestTweetsWithHashtag(hashtag: String, completion: ([STTweet]?, NSError?) -> Void) {
+        let url = NSURL(string: STTwitterManager.searchURL)!
+        var searchRequest = NSMutableURLRequest(URL: url)
+        searchRequest.addValue(STTwitterManager.token, forHTTPHeaderField: "Authorization")
+        let params = [
+            "q" : "#\(hashtag)"
+        ]
+        var error: NSError?
+        (searchRequest, error) = Alamofire.ParameterEncoding.URL.encode(searchRequest, parameters: params)
+        guard error == nil else {
+            completion(nil, error)
+            return
+        }
         
+        Alamofire.request(searchRequest).responseJSON { response in
+            print(NSString(data: response.data!, encoding: NSUTF8StringEncoding))
+            if let JSON = (response.result.value as? NSDictionary) {
+                print("---")
+                
+            }
+        }.responseString { responseString in print(responseString) }
     }
 }

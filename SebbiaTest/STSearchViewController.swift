@@ -9,5 +9,10 @@
 import UIKit
 
 class STSearchViewController: UIViewController {
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        STTwitterManager.requestTweetsWithHashtag("qwerty") { tweets, error in
+            print("tweets : \(tweets), error : \(error)")
+        }
+    }
 }
