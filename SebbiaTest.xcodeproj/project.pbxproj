@@ -13,6 +13,8 @@
 		1156F9261C46DB7A00241BA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1156F9241C46DB7A00241BA2 /* LaunchScreen.storyboard */; };
 		1156F92E1C46E07800241BA2 /* STSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156F92D1C46E07800241BA2 /* STSearchViewController.swift */; };
 		1156F9301C46E09F00241BA2 /* STProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156F92F1C46E09F00241BA2 /* STProfileViewController.swift */; };
+		1156F9331C46E10F00241BA2 /* STTwitterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156F9321C46E10F00241BA2 /* STTwitterManager.swift */; };
+		1156F9371C46E25200241BA2 /* STTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156F9361C46E25200241BA2 /* STTweet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		1156F9271C46DB7A00241BA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1156F92D1C46E07800241BA2 /* STSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STSearchViewController.swift; sourceTree = "<group>"; };
 		1156F92F1C46E09F00241BA2 /* STProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STProfileViewController.swift; sourceTree = "<group>"; };
+		1156F9321C46E10F00241BA2 /* STTwitterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STTwitterManager.swift; sourceTree = "<group>"; };
+		1156F9361C46E25200241BA2 /* STTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STTweet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 				1156F9221C46DB7A00241BA2 /* Assets.xcassets */,
 				1156F9241C46DB7A00241BA2 /* LaunchScreen.storyboard */,
 				1156F9271C46DB7A00241BA2 /* Info.plist */,
+				1156F9321C46E10F00241BA2 /* STTwitterManager.swift */,
+				1156F9361C46E25200241BA2 /* STTweet.swift */,
 			);
 			path = SebbiaTest;
 			sourceTree = "<group>";
@@ -148,6 +154,8 @@
 			files = (
 				1156F92E1C46E07800241BA2 /* STSearchViewController.swift in Sources */,
 				1156F91C1C46DB7A00241BA2 /* AppDelegate.swift in Sources */,
+				1156F9331C46E10F00241BA2 /* STTwitterManager.swift in Sources */,
+				1156F9371C46E25200241BA2 /* STTweet.swift in Sources */,
 				1156F9301C46E09F00241BA2 /* STProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
