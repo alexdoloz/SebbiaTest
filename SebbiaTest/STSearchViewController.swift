@@ -18,9 +18,12 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var searchButton: UIButton!
     
     @IBOutlet weak var tweetsTable: UITableView!
+    @IBOutlet weak var notFoundLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
 // MARK: Actions
     @IBAction func searchButtonPressed(sender: AnyObject) {
+        self.view.endEditing(true)
         searchHashtag(hashtagField.text!)
     }
     
@@ -34,11 +37,39 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
         searchButton.enabled = (hashtagField.text! as NSString).length != 0
     }
     
-    func searchHashtag(hashtag: String) {
-        STTwitterManager.requestTweetsWithHashtag(hashtag) { tweets, error in
-            self.tweets = tweets
-            self.tweetsTable.reloadData()
+    func updateTable(message: String) {
+        if tweets.count == 0 {
+            tweetsTable.hidden = true
+            notFoundLabel.hidden = false
+            notFoundLabel.text = message
+            return
         }
+        tweetsTable.hidden = false
+        notFoundLabel.hidden = true
+        tweetsTable.reloadData()
+    }
+    
+    func searchHashtag(hashtag: String) {
+        self.beginLoading()
+        STTwitterManager.requestTweetsWithHashtag(hashtag) { tweets, error in
+            self.endLoading()
+            self.tweets = tweets ?? []
+            let message = error == nil ?
+                "Не нашлось твитов с хештегом #\(self.hashtagField.text!)" : "Произошла ошибка. Попробуйте еще раз"
+            self.updateTable(message)
+        }
+    }
+    
+    func beginLoading() {
+        self.activityIndicator.startAnimating()
+        self.searchButton.enabled = false
+        self.hashtagField.enabled = false
+    }
+    
+    func endLoading() {
+        self.activityIndicator.stopAnimating()
+        self.searchButton.enabled = true
+        self.hashtagField.enabled = true
     }
     
 // MARK: UITableViewDelegate
@@ -66,6 +97,7 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
         updateSearchButton()
         tweetsTable.rowHeight = UITableViewAutomaticDimension
         tweetsTable.estimatedRowHeight = 120.0
+        updateTable("")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

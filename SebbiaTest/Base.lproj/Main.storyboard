@@ -87,16 +87,30 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="J5f-hP-Ljx"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Jga-rG-QQK">
+                                <rect key="frame" x="321" y="88" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bj5-0l-lL0">
+                                <rect key="frame" x="183" y="181" width="49" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.36602176050000002" green="0.36602176050000002" blue="0.36602176050000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="sOQ-x4-cJM" secondAttribute="trailing" id="3o3-yT-cU7"/>
+                            <constraint firstItem="bj5-0l-lL0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="117" id="4O4-Ag-Zta"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sOQ-x4-cJM" secondAttribute="bottom" id="V4P-3j-SNs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CoO-ry-MI9" secondAttribute="trailing" id="enB-wa-HH9"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="bj5-0l-lL0" secondAttribute="trailing" constant="8" id="fFL-py-XKy"/>
                             <constraint firstItem="jgd-fn-8q8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="17" id="la6-LC-gLh"/>
                             <constraint firstItem="9qE-dn-4lQ" firstAttribute="centerY" secondItem="jgd-fn-8q8" secondAttribute="centerY" id="m45-zP-oCb"/>
+                            <constraint firstItem="bj5-0l-lL0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="obJ-3N-J9K"/>
                             <constraint firstItem="sOQ-x4-cJM" firstAttribute="top" secondItem="jgd-fn-8q8" secondAttribute="bottom" constant="11" id="qPS-eL-gyB"/>
+                            <constraint firstItem="Jga-rG-QQK" firstAttribute="centerY" secondItem="CoO-ry-MI9" secondAttribute="centerY" id="qZg-Mc-gb4"/>
                             <constraint firstAttribute="leadingMargin" secondItem="9qE-dn-4lQ" secondAttribute="leading" id="s0y-JH-csW"/>
+                            <constraint firstItem="CoO-ry-MI9" firstAttribute="leading" secondItem="Jga-rG-QQK" secondAttribute="trailing" constant="8" id="sLL-x8-acr"/>
                             <constraint firstItem="CoO-ry-MI9" firstAttribute="centerY" secondItem="jgd-fn-8q8" secondAttribute="centerY" id="v0H-x7-Mg8"/>
                             <constraint firstItem="sOQ-x4-cJM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vl6-IJ-QlF"/>
                             <constraint firstItem="jgd-fn-8q8" firstAttribute="leading" secondItem="9qE-dn-4lQ" secondAttribute="trailing" constant="8" id="zoO-UW-v5w"/>
@@ -105,7 +119,9 @@
                     <navigationItem key="navigationItem" title="Твиты" id="mhW-L3-utU"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Jga-rG-QQK" id="58T-lq-9tV"/>
                         <outlet property="hashtagField" destination="jgd-fn-8q8" id="37s-gf-t6S"/>
+                        <outlet property="notFoundLabel" destination="bj5-0l-lL0" id="lq7-KY-QLH"/>
                         <outlet property="searchButton" destination="CoO-ry-MI9" id="C3F-6e-Frp"/>
                         <outlet property="tweetsTable" destination="sOQ-x4-cJM" id="Upo-kG-NWF"/>
                         <segue destination="d0T-5A-VJ6" kind="push" identifier="ShowAuthorInfo" id="sAj-Wz-Meh"/>
