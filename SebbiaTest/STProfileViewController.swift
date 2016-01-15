@@ -19,11 +19,21 @@ class STProfileViewController: UIViewController {
     
     @IBOutlet weak var userFriendsCountLabel: UILabel!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
 // MARK: Lifecycle
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         userNameLabel.text = tweet.userName
         userFriendsCountLabel.text = String(tweet.userFriendsCount)
-        profileImageView.hnk_setImageFromURL(tweet.userImageURL)
+        profileImageView.hnk_setImageFromURL(tweet.userImageURL, failure: {
+            error in
+            self.activityIndicator.stopAnimating()
+        }, success: {
+            image in
+            self.activityIndicator.stopAnimating()
+            self.profileImageView.image = image
+        })
     }
+    
 }

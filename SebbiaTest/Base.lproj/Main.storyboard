@@ -164,6 +164,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jcT-hX-RnC">
+                                <rect key="frame" x="76" y="86" width="20" height="20"/>
+                            </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4DH-F8-IG4">
                                 <rect key="frame" x="62" y="72" width="48" height="48"/>
                                 <constraints>
@@ -193,12 +196,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="jcT-hX-RnC" firstAttribute="centerY" secondItem="4DH-F8-IG4" secondAttribute="centerY" id="1xa-cI-pQf"/>
                             <constraint firstItem="OnP-nF-yTj" firstAttribute="bottom" secondItem="4DH-F8-IG4" secondAttribute="bottom" id="CZg-hE-WQA"/>
                             <constraint firstItem="4DH-F8-IG4" firstAttribute="leading" secondItem="ZrU-r6-T9c" secondAttribute="leadingMargin" constant="42" id="EMh-5a-Ena"/>
                             <constraint firstItem="neR-2C-u0O" firstAttribute="leading" secondItem="OnP-nF-yTj" secondAttribute="trailing" constant="6" id="IZR-4K-oA0"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="pZw-cI-8ll" secondAttribute="trailing" id="QVv-ay-ihW"/>
                             <constraint firstItem="neR-2C-u0O" firstAttribute="centerY" secondItem="OnP-nF-yTj" secondAttribute="centerY" id="UYB-Xa-TGk"/>
                             <constraint firstItem="pZw-cI-8ll" firstAttribute="leading" secondItem="4DH-F8-IG4" secondAttribute="trailing" constant="8" id="cXg-XA-eEA"/>
+                            <constraint firstItem="jcT-hX-RnC" firstAttribute="centerX" secondItem="4DH-F8-IG4" secondAttribute="centerX" id="gxV-d4-TMW"/>
                             <constraint firstItem="neR-2C-u0O" firstAttribute="baseline" secondItem="OnP-nF-yTj" secondAttribute="baseline" id="hLz-vj-BBo"/>
                             <constraint firstItem="OnP-nF-yTj" firstAttribute="leading" secondItem="4DH-F8-IG4" secondAttribute="trailing" constant="8" id="mYv-qC-gDT"/>
                             <constraint firstItem="4DH-F8-IG4" firstAttribute="top" secondItem="myu-vs-vAD" secondAttribute="bottom" constant="8" id="tIh-MZ-Du6"/>
@@ -212,6 +217,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Профиль" id="A6j-Bs-7La"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="jcT-hX-RnC" id="Qle-6p-mM6"/>
                         <outlet property="profileImageView" destination="4DH-F8-IG4" id="Fxz-UA-smR"/>
                         <outlet property="userFriendsCountLabel" destination="neR-2C-u0O" id="V99-43-euj"/>
                         <outlet property="userNameLabel" destination="pZw-cI-8ll" id="xuH-iU-pBH"/>
