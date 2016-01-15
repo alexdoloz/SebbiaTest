@@ -17,6 +17,7 @@ class STTweet: NSObject, Mappable {
     var userFriendsCount: Int!
     var userImageURL: NSURL!
     
+    override init() {}
     
     required init?(_ map: Map) {}
     

@@ -46,7 +46,6 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
         }
         tweetsTable.hidden = false
         notFoundLabel.hidden = true
-        STPersistanceManager.saveTweets(tweets, hashtag: "")
         tweetsTable.reloadData()
     }
     
@@ -55,6 +54,11 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
         STTwitterManager.requestTweetsWithHashtag(hashtag) { tweets, error in
             self.endLoading()
             self.tweets = tweets ?? []
+            if self.tweets.count > 0 {
+                if let persistanseManager = STPersistanceManager.sharedManager {
+                    persistanseManager.saveTweets(tweets)
+                }
+            }
             let message = error == nil ?
                 "Не нашлось твитов с хештегом #\(self.hashtagField.text!)" : "Произошла ошибка. Попробуйте еще раз"
             self.updateTable(message)
@@ -98,6 +102,9 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
         updateSearchButton()
         tweetsTable.rowHeight = UITableViewAutomaticDimension
         tweetsTable.estimatedRowHeight = 120.0
+        if let persistanseManager = STPersistanceManager.sharedManager {
+            tweets = persistanseManager.loadTweets()
+        } 
         updateTable("")
     }
     

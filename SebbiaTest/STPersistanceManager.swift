@@ -11,20 +11,31 @@ import SQLite
 
 
 class STPersistanceManager {
-    class func saveTweets(tweets: [STTweet], hashtag: String) {
+    private(set) static var sharedManager = STPersistanceManager()
+    
+    private let id = Expression<Int>("id")
+    private let dateString = Expression<String>("dateString")
+    private let text = Expression<String>("text")
+    private let userName = Expression<String>("userName")
+    private let userFriendsCount = Expression<Int64>("userFriendsCount")
+    private let userImageURL = Expression<String>("userImageURL")
+    private let tweetsTable = Table("tweets")
+    
+    private var db: Connection!
+    
+    init?() {
         do {
             let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
-            let db = try Connection("\(path)/db.sqlite3")
-            
-            let id = Expression<Int>("id")
-            let dateString = Expression<String>("dateString")
-            let text = Expression<String>("text")
-            let userName = Expression<String>("userName")
-            let userFriendsCount = Expression<Int64>("userFriendsCount")
-            let userImageURL = Expression<String>("userImageURL")
-            
-            let tweetsTable = Table("tweets")
-            let sql = tweetsTable.create(ifNotExists: true) {
+            db = try Connection("\(path)/db.sqlite3")
+        } catch {
+            return nil
+        }
+    }
+    
+    func saveTweets(tweets: [STTweet]) {
+        do {
+            try db.run(tweetsTable.drop(ifExists: true))
+            try db.run(tweetsTable.create() {
                 t in
                 t.column(id, primaryKey: .Autoincrement)
                 t.column(dateString)
@@ -32,10 +43,7 @@ class STPersistanceManager {
                 t.column(userName)
                 t.column(userFriendsCount)
                 t.column(userImageURL)
-
-//                t.primaryKey(dateString, userName)
-            }
-            try! db.run(sql)
+            })
             
             for tweet in tweets {
                 try db.run(tweetsTable.insert(
@@ -51,7 +59,21 @@ class STPersistanceManager {
         }
     }
     
-    class func loadTweets() -> ([STTweet], String) {
-        return ([], "")
+    func loadTweets() -> [STTweet] {
+        var tweets: [STTweet] = []
+        do {
+            for tweetRow in try db.prepare(tweetsTable) {
+                let tweet = STTweet()
+                tweet.dateString = tweetRow[dateString]
+                tweet.text = tweetRow[text]
+                tweet.userName = tweetRow[userName]
+                tweet.userFriendsCount = Int(tweetRow[userFriendsCount])
+                tweet.userImageURL = NSURL(string: tweetRow[userImageURL])!
+                tweets.append(tweet)
+            }
+            return tweets
+        } catch {
+            return []
+        }
     }
 }
