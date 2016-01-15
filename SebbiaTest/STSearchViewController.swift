@@ -46,6 +46,7 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
         }
         tweetsTable.hidden = false
         notFoundLabel.hidden = true
+        STPersistanceManager.saveTweets(tweets, hashtag: "")
         tweetsTable.reloadData()
     }
     
@@ -86,7 +87,7 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell_id", forIndexPath: indexPath) as! STTweetCell
         let tweet = tweets[indexPath.row]
-        cell.dateLabel.text = tweet.date.description
+        cell.dateLabel.text = tweet.dateString
         cell.tweetTextLabel.text = tweet.text
         return cell
     }

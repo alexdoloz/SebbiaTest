@@ -10,7 +10,7 @@ import UIKit
 import ObjectMapper
 
 class STTweet: NSObject, Mappable {
-    var date: NSDate!
+    var dateString: String!
     var text: String!
     
     var userName: String!
@@ -21,9 +21,7 @@ class STTweet: NSObject, Mappable {
     required init?(_ map: Map) {}
     
     func mapping(map: Map) {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "eee MMM dd HH:mm:ss ZZZZ yyyy"
-        date <- (map["created_at"], DateFormatterTransform(dateFormatter: dateFormatter))
+        dateString <- map["created_at"]
         text <- map["text"]
         
         userName <- map["user.name"]
@@ -32,6 +30,6 @@ class STTweet: NSObject, Mappable {
     }
     
     override var description: String {
-        return "TWEET(\(date)): \(text) || from \(userName) with \(userFriendsCount) friends"
+        return "TWEET(\(dateString)): \(text) || from \(userName) with \(userFriendsCount) friends"
     }
 }
