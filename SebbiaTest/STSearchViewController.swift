@@ -13,6 +13,8 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
     
 // MARK: Outlets
     
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var hashtagField: UITextField!
 
     @IBOutlet weak var searchButton: UIButton!
@@ -115,6 +117,8 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
             tweets = persistanseManager.loadTweets()
         } 
         updateTable("")
+        tweetsTable.contentInset.top = heightConstraint.constant;
+        tweetsTable.scrollIndicatorInsets.top = heightConstraint.constant;
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
