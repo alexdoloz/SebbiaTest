@@ -25,9 +25,10 @@
                                     <constraint firstAttribute="height" constant="33" id="wL8-hS-acz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="search"/>
                                 <connections>
                                     <action selector="hashtagChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="9Fz-a2-5EZ"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="k5s-SH-5cR"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qE-dn-4lQ">

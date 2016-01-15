@@ -8,7 +8,7 @@
 
 import UIKit
 
-class STSearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class STSearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     var tweets: [STTweet] = []
     
 // MARK: Outlets
@@ -23,16 +23,19 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
     
 // MARK: Actions
     @IBAction func searchButtonPressed(sender: AnyObject) {
-        self.view.endEditing(true)
-        searchHashtag(hashtagField.text!)
+        startSearch()
     }
     
     @IBAction func hashtagChanged(sender: AnyObject) {
-        print("\(hashtagField.text!)")
         updateSearchButton()
     }
     
 // MARK: Helpers
+    func startSearch() {
+        self.view.endEditing(true)
+        searchHashtag(hashtagField.text!)
+    }
+
     func updateSearchButton() {
         searchButton.enabled = (hashtagField.text! as NSString).length != 0
     }
@@ -94,6 +97,12 @@ class STSearchViewController: UIViewController, UITableViewDelegate, UITableView
         cell.dateLabel.text = tweet.dateString
         cell.tweetTextLabel.text = tweet.text
         return cell
+    }
+    
+// MARK: UITextFieldDelegate
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        startSearch()
+        return true
     }
     
 // MARK: Lifecycle
